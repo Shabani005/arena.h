@@ -16,6 +16,7 @@ typedef struct {
 Arena *ar_init(size_t cap);
 void * ar_alloc(Arena *a, size_t size);
 void ar_free(Arena *a);
+void arena_reset(Arena *a);
 
 #ifdef AR_IMPLEMENTATION
 // TODO: default static ARENA with AR_SIZE 
@@ -29,10 +30,14 @@ Arena *ar_init(size_t cap){
   return a;
 }
 
-void * ar_alloc(Arena *a, size_t size){
+void *ar_alloc(Arena *a, size_t size){
   void* ptr = a->base + a->size;
   a->size += size;
   return ptr;
+}
+
+void arena_reset(Arena *a){
+  a->size = 0; // We just overwrite old data
 }
 
 void ar_free(Arena *a){
