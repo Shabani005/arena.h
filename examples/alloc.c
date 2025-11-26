@@ -16,11 +16,6 @@ int main(void){
   for (size_t i=0; i<10; ++i){
     printf("heap allocated value: %d\n", x[i]);
   }
-
-  while (1){
-    
-  }
-
   
   return 0;
 }
